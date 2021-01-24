@@ -1,96 +1,26 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, Dimensions, StyleSheet, Button, StatusBar, Image } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { useTheme } from '@react-navigation/native';
+import { ActivityIndicator } from 'react-native';
 
-const SplashScreen = ({ navigation }) => {
-    const { colors } = useTheme();
+export default class SplashScreen extends Component {
+
+    componentDidMount(){
+setTimeout(() => {
+    this.props.navigation.navigate('MainScreen')
+}, 2000);
+    }
+
+render() {
     return (
-        <View style={styles.container}>
-            <StatusBar backgroundColor='#00BFFF' barStyle="light-content" />
-            <View style={styles.header}>
-                <Animatable.Image
-                    animation="bounceIn"
-                    duraton="1500"
-                    source={require('../assets/logo.jpg')}
-                    style={styles.logo}
-                    resizeMode="stretch"
- />
-            </View>
-            <Animatable.View
-                style={[styles.footer, {
-                    backgroundColor: colors.background
-                }]}
-                animation="fadeInUpBig" >
-                <Text style={[styles.title, {
-                    color: colors.text
-                }]}>Shop with us!</Text>
-                <View style={styles.button}>
-                   
-                    <TouchableOpacity >
-                        <View><Text style={styles.btn} >Skip
-                  <MaterialIcons style={styles.btn} onPress={() =>navigation.navigate('MainScreen')}
-                  name="navigate-next"
-                  color="#fff" /></Text></View>
-                  </TouchableOpacity>   
+        <View style={{flex:1, justifyContent:'center', alignItems: 'center', backgroundColor:'#fff'}}>
+            <Image source={require('../assets/logo.jpg')}
+                style={{width:'100%',height:'30%'}}/>
+                <ActivityIndicator size="large" color= '#00BFFF'
+                style={{margin:10}}/>
                 </View>
-            </Animatable.View>
-        </View>
     );
 };
-
-export default SplashScreen;
-
-const { height } = Dimensions.get("screen");
-const height_logo = height * 0.28;
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#00BFFF'
-    },
-    header: {
-        flex: 2,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    footer: {
-        flex: 1,
-        backgroundColor: '#fff',
-        borderTopLeftRadius: 30,
-        borderTopRightRadius: 30,
-        paddingVertical: 10,
-        paddingHorizontal: 30
-    },
-    logo: {
-        width: height_logo,
-        height: height_logo
-    },
-    title: {
-        color: '#05375a',
-        fontSize: 25,
-        fontWeight: 'bold'
-    },
-    text: {
-        color: 'grey',
-        marginTop: 5
-    },
-    button: {
-        alignItems: 'flex-end',
-        marginTop: 50
-    },
-    signIn: {
-        width: 150,
-        height: 40,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 50,
-        flexDirection: 'row'
-    },
-    btn: {
-        color: 'grey',
-        fontWeight: 'bold',
-        backgroundColor: '#fff'
-    }
-});
+}
