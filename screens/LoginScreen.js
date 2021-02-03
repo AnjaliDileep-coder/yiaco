@@ -1,10 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, AsyncStorage, Alert, KeyboardAvoidingView, View } from 'react-native';
+import { StyleSheet, Text, AsyncStorage, KeyboardAvoidingView, View } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
 
-
-//const LoginScreen=(props)=> {
 export default function LoginScreen(props) {
   const onSubmit = () => {
     fetch('http://192.168.1.6:3000/api/login',
@@ -15,7 +12,6 @@ export default function LoginScreen(props) {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-
           "email": email,
           "password": password
         })
@@ -26,14 +22,8 @@ export default function LoginScreen(props) {
           alert('success');
           console.log(res);
           AsyncStorage.setItem('user', JSON.stringify(res));
-
           var user = await AsyncStorage.getItem('user');
           var parsed = JSON.parse(user);
-
-          // console.log('fetched user');
-          // console.log(parsed);
-
-
           props.navigation.navigate('LoadingScreen')
         } else {
           alert('try again')
@@ -42,86 +32,19 @@ export default function LoginScreen(props) {
       .catch(function (error) {
         alert(error);
       });
-
   }
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  //componentDidMount=()=>{
-  //this._loadInitialState().done();
-  //}
-
-  //_loadInitialState = async () =>{
-
-  //  var value = await AsyncStorage.getItem('user');
-  //if (value!== null){
-  //this.props.navigation.navigate('LoadingScreen');
-  //}
-  //}
-
-  //sendCred=()=>{
-  //fetch("http://192.168.1.6:3000/api/login",{
-  //method: 'POST',
-  //headers:{
-  //'Accept': 'application/json',
-  //'Content-Type': 'application/json',
-  //} ,
-  //body:JSON.stringify({
-  //email,
-  //password,
-  //}) 
-  //})
-
-  //.then((response) => response.json())
-  //.then((res) => {
-  //if(res.success === true){
-  //AsyncStorage.getItem('user',res.user);
-  //this.props.navigation.navigate('LoadingScreen');
-  //}
-  //else{
-  //alert(res.message);
-  //}
-  //})
-
-  //}
-  //sendCred= async()=>{
-  //fetch("http://192.168.1.6:3000/api/login",{
-  //  method:'POST',
-  //headers:{
-  // 'Content-Type': 'application/json',
-  //},
-  //body: JSON.stringify({
-
-  //   "email":email,
-  // "password":password
-  //})
-  //})
-  //.then((response) => response.json())
-  //.then((responseJson) => {
-  //Alert.alert("Success" + email);
-
-
-
-  // })
-  //.catch((error) => {
-  //console.error(error);
-  //});
-  //}
-
-
   return (
     <KeyboardAvoidingView behavior="position">
       <View style={styles.container}>
-        <Text style={styles.signup}>Login</Text>
-
-
+        <Text style={styles.login}>Login</Text>
         <TextInput style={styles.input}
           value={email}
           mode="outlined"
           label="Email"
           theme={{ colors: { primary: "#00bffff" } }}
           onChangeText={(text) => setEmail(text)} />
-
         <TextInput style={styles.input}
           secureTextEntry={true}
           value={password}
@@ -129,25 +52,19 @@ export default function LoginScreen(props) {
           label="Password"
           theme={{ colors: { primary: "#00bffff" } }}
           onChangeText={(text) => setPassword(text)} />
-
-        <View style={styles.Button}>
+        <View style={styles.button}>
           <Button mode="contained" onPress={() => props.navigation.navigate("MainScreen")} color="#00bfff" width={200}>LOGIN</Button>
         </View>
-        <View style={styles.login}>
-          <Text style={styles.forgott} >Click here to </Text>
-          <Text onPress={() => props.navigation.navigate("SignupScreen")} style={styles.logintext}> Signup</Text>
+        <View style={styles.signup}>
+          <Text style={styles.signup1} >Click here to </Text>
+          <Text onPress={() => props.navigation.navigate("SignupScreen")} style={styles.signuptext}> Signup</Text>
         </View>
       </View>
     </KeyboardAvoidingView>
   );
 }
-
-
-
-//export default LoginScreen;
-
 const styles = StyleSheet.create({
-  signup: {
+  login: {
     paddingTop: 100,
     paddingLeft: 130,
     alignItems: "center",
@@ -156,16 +73,7 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     color: "#00bfff"
   },
-  create: {
-    paddingLeft: 105,
-    fontStyle: "italic",
-    fontSize: 15,
-    paddingTop: 5,
-    paddingBottom: 5,
-    color: "#00bfff"
-  },
-  Button: {
-
+  button: {
     alignItems: "center",
     justifyContent: "center"
   },
@@ -175,16 +83,16 @@ const styles = StyleSheet.create({
     margin: 18,
     paddingRight: 5
   },
-  forgott: {
+  signup: {
+    flexDirection: 'row',
+    paddingTop: 10
+  },
+  signup1: {
     paddingLeft: 200,
     fontStyle: "italic",
     paddingTop: 10
   },
-  login: {
-    flexDirection: 'row',
-    paddingTop: 10
-  },
-  logintext: {
+  signuptext: {
     color: '#00bfff',
     paddingTop: 9
   }
