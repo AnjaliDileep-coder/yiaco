@@ -73,12 +73,12 @@ export default class Screen extends Component {
                 </NBText>
               </View>
             </View>
-            <View style={{ alignSelf: 'center', paddingTop: 20 }}>
+            <View style={{ alignSelf: 'center', paddingTop: 10 }}>
               <Button block onPress={this.addToCart.bind(this)} style={{ backgroundColor: "#00bfff" }}>
                 <Text style={{ color: "#fdfdfd" }}>Add to cart</Text>
               </Button>
             </View>
-            <View style={{ alignSelf: 'center', paddingTop: 20 }}>
+            <View style={{ alignSelf: 'center', paddingTop: 10 }}>
               <Button block onPress={() => this.props.navigation.navigate("CartDetails", { item: this.state.item })} style={{ backgroundColor: "#00bfff" }}>
                 <Text style={{ color: "#fdfdfd" }}>Buy Now</Text>
               </Button>
