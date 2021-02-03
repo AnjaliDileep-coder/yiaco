@@ -30,5 +30,5 @@ export default class SideMenuDrawer extends Component {
   open() {
     this._drawer.open();
   }
-  
+
 }

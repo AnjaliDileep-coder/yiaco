@@ -8,11 +8,11 @@ export default class Navbar extends Component {
   render() {
     return(
       <Header
-        style={{backgroundColor: "#00bfff"}}
-        backgroundColor="#00bfff"
-        androidStatusBarColor="white"
-        noShadow={true}
-        >
+      style={{backgroundColor: "#00bfff"}}
+      backgroundColor="white"
+      androidStatusBarColor="#00bfff"
+      noShadow={true}
+      >
         {this.props.left ? this.props.left : <Left style={{flex: 1}} />}
         <Body style={styles.body}>
           <Title style={styles.title}>{this.props.title}</Title>

@@ -48,7 +48,7 @@ export default class SearchBar extends React.PureComponent {
               background={Touchable.Ripple(this.props.tintColor, true)}
             >
               
-              <Ionicons style={{backgroundColor:"#00bfff", color:"white"}}
+              <Ionicons style={{backgroundColor:"green", color:"white"}}
                 name="md-close"
                 size={25}
                 //color={this.props.tintColor}
