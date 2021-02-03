@@ -48,7 +48,7 @@ const SignupScreen = (props) => {
 const styles = StyleSheet.create({
   signup: {
     paddingTop: 70,
-    paddingLeft: 145,
+    textAlign: 'center',
     alignItems: "center",
     justifyContent: "center",
     fontSize: 35,
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     color: "#00bfff"
   },
   create: {
-    paddingLeft: 127,
+    textAlign: 'center',
     fontStyle: "italic",
     fontSize: 15,
     paddingTop: 5,
