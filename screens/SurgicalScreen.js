@@ -1,351 +1,102 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
-import { StyleSheet, View, Text, ImageBackground, ScrollView, Image, TextInput } from 'react-native';
+import React from 'react';
+import { StyleSheet, View, Text, ScrollView, Image } from 'react-native';
 import { Left } from 'native-base';
-import { Button } from 'react-native-paper';
-import SideMenuDrawer from '../src/components/SideMenuDrawer';
-
-
 import Icon from 'react-native-vector-icons/Ionicons';
 
-
-const surgicalScreen = (props) => {
+const SurgicalScreen = (props) => {
     return (
         <View style={{ flex: 1 }}>
             <View style={{ height: 75, justifyContent: 'center', paddingHorizontal: 5, backgroundColor: "white" }}>
                 <View style={{ flexDirection: 'row' }}>
                     <Left style={{ flex: 1, marginTop: 5, flexDirection: "row" }}>
-                        {/* <Button >
-                            <Icon name='ios-menu-outline' style={{ fontSize: 30, color: "#00bfff", marginTop: 0 }} />
-                        </Button> */}
                         <View>
                             <Image source={require('../assets/logo.jpg')} style={{ width: 80, height: 50, marginTop: 13, left: 10 }} /></View>
                     </Left>
-                    <Text style={{ color: "#00bfff", fontSize: 20, paddingLeft: 0, fontWeight: "bold", paddingTop: 30 }}>Store</Text>
+                    <Text style={{ color: "#00bfff", fontSize: 20, fontWeight: "bold", paddingTop: 30 }}>Store</Text>
                     <Icon name="ios-search" onPress={() => props.navigation.navigate("SearchScreen")}
                         style={{ fontSize: 24, marginTop: 29, paddingLeft: 70, color: "#00bfff", marginRight: 10 }} />
-
                     <Icon name="ios-cart" onPress={() => props.navigation.navigate("CartScreen")}
                         style={{ fontSize: 24, marginTop: 29, paddingLeft: 20, color: "#00bfff", marginRight: 10 }} />
-
                 </View>
-
             </View>
             <ScrollView>
                 <View style={{ flexDirection: 'row' }}>
-                    <Image source={require('../assets/wound.jpg')} style={styles.indo} >
+                    <Image source={require('../assets/wound.jpg')} style={styles.image1} >
                     </Image>
-                    <Image source={require('../assets/scalpel.jpg')} style={styles.Image} >
-                    </Image>
-                </View>
-                <View style={{ flexDirection: 'row' }}>
-                    <Text style={styles.anthurium} onPress={() => props.navigation.navigate("ThermoScreen")}>Wound Retractors</Text>
-                    <Text style={styles.golden}>Scalpel</Text>
-                </View>
-
-
-                <View style={{ flexDirection: 'row' }}>
-                    <Text style={styles.cashindoor}>$ 250</Text>
-                    <Text style={styles.cash}>$ 150</Text>
-                </View>
-
-                <View style={{ flexDirection: 'row' }}>
-                    <Image source={require('../assets/straightvesselclips.jpg')} style={styles.indo} >
-                    </Image>
-                    <Image source={require('../assets/artery_foreceps.jpg')} style={styles.Image} >
+                    <Image source={require('../assets/scalpel.jpg')} style={styles.image2} >
                     </Image>
                 </View>
                 <View style={{ flexDirection: 'row' }}>
-                    <Text style={styles.anthurium}>Straight vessel clips</Text>
-                    <Text style={styles.golden} onPress={() => navigation.navigate("medicalScreen")}>Artery Foreceps </Text>
+                    <Text style={styles.name1} onPress={() => props.navigation.navigate("ThermoScreen")}>Wound Retractors</Text>
+                    <Text style={styles.name2}>Scalpel</Text>
                 </View>
                 <View style={{ flexDirection: 'row' }}>
-                    <Text style={styles.cashindoor}>$ 275</Text>
-                    <Text style={styles.cash}>$ 350</Text>
+                    <Text style={styles.rate1}>$ 250</Text>
+                    <Text style={styles.rate2}>$ 150</Text>
                 </View>
-
-
                 <View style={{ flexDirection: 'row' }}>
-                    <Image source={require('../assets/bulldog.jpg')} style={styles.indo} >
+                    <Image source={require('../assets/straightvesselclips.jpg')} style={styles.image1} >
                     </Image>
-                    <Image source={require('../assets/haemostatic-forceps.jpeg')} style={styles.Image} >
+                    <Image source={require('../assets/artery_foreceps.jpg')} style={styles.image2} >
                     </Image>
                 </View>
                 <View style={{ flexDirection: 'row' }}>
-                    <Text style={styles.anthurium} >Bulldog Clamps</Text>
-                    <Text style={styles.golden}>Haemostatic forceps</Text>
+                    <Text style={styles.name1}>Straight vessel clips</Text>
+                    <Text style={styles.name2} onPress={() => navigation.navigate("medicalScreen")}>Artery Foreceps </Text>
                 </View>
                 <View style={{ flexDirection: 'row' }}>
-                    <Text style={styles.cashindoor}>$ 200</Text>
-                    <Text style={styles.cash}>$ 90</Text>
+                    <Text style={styles.rate1}>$ 275</Text>
+                    <Text style={styles.rate2}>$ 350</Text>
                 </View>
-
                 <View style={{ flexDirection: 'row' }}>
-                    <Image source={require('../assets/organ.jpg')} style={styles.indo} >
+                    <Image source={require('../assets/bulldog.jpg')} style={styles.image1} >
                     </Image>
-                    <Image source={require('../assets/surgical.jpg')} style={styles.Image} >
-                    </Image>
-                </View>
-                <View style={{ flexDirection: 'row' }}>
-                    <Text style={styles.anthurium}>Organ and Tissue Grasping Forceps</Text>
-                    <Text style={styles.golden}>Surgical Needles</Text>
-                </View>
-                <View style={{ flexDirection: 'row' }}>
-                    <Image source={require('../assets/abdom.jpg')} style={styles.indo} >
-                    </Image>
-                    <Image source={require('../assets/scissors.jpg')} style={styles.Image} >
+                    <Image source={require('../assets/haemostatic-forceps.jpeg')} style={styles.image2} >
                     </Image>
                 </View>
                 <View style={{ flexDirection: 'row' }}>
-                    <Text style={styles.anthurium}>Abdominal Retractors</Text>
-                    <Text style={styles.golden}>Scissors</Text>
+                    <Text style={styles.name1} >Bulldog Clamps</Text>
+                    <Text style={styles.name2}>Haemostatic forceps</Text>
                 </View>
                 <View style={{ flexDirection: 'row' }}>
-                    <Text style={styles.cashindoor}>$ 270</Text>
-                    <Text style={styles.cash}>$ 90</Text>
+                    <Text style={styles.rate1}>$ 200</Text>
+                    <Text style={styles.rate2}>$ 90</Text>
+                </View>
+                <View style={{ flexDirection: 'row' }}>
+                    <Image source={require('../assets/organ.jpg')} style={styles.image1} >
+                    </Image>
+                    <Image source={require('../assets/surgical.jpg')} style={styles.image2} >
+                    </Image>
+                </View>
+                <View style={{ flexDirection: 'row' }}>
+                    <Text style={styles.name1}>Organ and Tissue Grasping Forceps</Text>
+                    <Text style={styles.name2}>Surgical Needles</Text>
+                </View>
+                <View style={{ flexDirection: 'row' }}>
+                    <Text style={styles.rate1}>$ 220</Text>
+                    <Text style={styles.rate2}>$ 150</Text>
+                </View>
+                <View style={{ flexDirection: 'row' }}>
+                    <Image source={require('../assets/abdom.jpg')} style={styles.image1} >
+                    </Image>
+                    <Image source={require('../assets/scissors.jpg')} style={styles.image2} >
+                    </Image>
+                </View>
+                <View style={{ flexDirection: 'row' }}>
+                    <Text style={styles.name1}>Abdominal Retractors</Text>
+                    <Text style={styles.name2}>Scissors</Text>
+                </View>
+                <View style={{ flexDirection: 'row' }}>
+                    <Text style={styles.rate1}>$ 270</Text>
+                    <Text style={styles.rate2}>$ 90</Text>
                 </View>
             </ScrollView>
         </View>
-
-
     );
-
 }
-
-export default surgicalScreen;
-
 const styles = StyleSheet.create({
-
-    login: {
-        paddingTop: 42,
-        paddingLeft: 180,
-        paddingBottom: 10,
-        paddingRight: 25,
-        fontSize: 20,
-        color: "white"
-    },
-    indoorplant: {
-        width: "0%",
-        height: "50%",
-        resizeMode: 'contain',
-        marginTop: 20,
-        paddingLeft: 35
-
-    },
-    flower: {
-        fontSize: 10,
-        marginTop: 20,
-        height: 40,
-        width: "20%",
-        backgroundColor: "white",
-        borderRadius: 5,
-        elevation: 10,
-        marginLeft: 10,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 3 },
-        shadowOpacity: 0.5,
-        shadowRadius: 5,
-        paddingTop: 10,
-        paddingLeft: 15,
-
-    },
-    text: {
-        fontSize: 10,
-        marginTop: 20,
-        height: 40,
-        width: "20%",
-        backgroundColor: "white",
-        borderRadius: 5,
-        elevation: 10,
-        marginLeft: 15,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 3 },
-        shadowOpacity: 0.5,
-        shadowRadius: 5,
-        paddingTop: 14,
-        paddingLeft: 5,
-        marginBottom: 5
-    },
-    signup: {
-        paddingLeft: 180,
-        paddingTop: 40,
-        fontSize: 20,
-        flexDirection: 'row',
-        color: "white"
-    },
-    create: {
-        paddingLeft: 105,
-        fontStyle: "italic",
-        fontSize: 15,
-        paddingTop: 5,
-        paddingBottom: 5,
-        color: "green"
-    },
-    fernss: {
-        width: "35%",
-        height: "120%",
-        backgroundColor: "white",
-        marginLeft: 18,
-        marginTop: 20
-    },
-    flowr: {
-        paddingTop: 15,
-        marginRight: 5,
-
-        height: 100,
-        width: "25%",
-        backgroundColor: "white",
-        borderRadius: 1,
-        marginTop: 10,
-        marginLeft: 15,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 3 },
-        shadowOpacity: 0.5,
-        shadowRadius: 5
-
-    },
-    ferns: {
-        marginTop: 80,
-        paddingLeft: 50,
-        marginLeft: 35,
-        marginBottom: 20,
-        paddingTop: 5,
-        fontSize: 10,
-        height: 75,
-        width: "35%",
-        backgroundColor: "white",
-        borderRadius: 1,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 3 },
-        shadowOpacity: 0.5,
-        shadowRadius: 5
-    },
-    Button: {
-
-        alignItems: "center",
-        justifyContent: "center"
-    },
-    input: {
-        width: "90%",
-        height: 50,
-        margin: 18,
-        paddingRight: 5
-    },
-    plants: {
-        paddingLeft: 55,
-        paddingTop: 50,
-
-
-    },
-
-    Image: {
-
-        marginLeft: 25,
-        marginTop: 20,
-        backgroundColor: "white",
-        height: 100,
-        width: "35%",
-        backgroundColor: "white",
-        borderRadius: 1,
-        resizeMode: 'contain',
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 3 },
-        shadowOpacity: 0.5,
-        shadowRadius: 5,
-        marginRight: 5
-
-    },
-    flowering: {
-        paddingLeft: 20,
-        marginLeft: 23,
-        paddingTop: 5,
-        fontSize: 7,
-        height: 25,
-        width: "26%",
-        backgroundColor: "white",
-        borderRadius: 1,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 3 },
-        shadowOpacity: 0.5,
-        shadowRadius: 5,
-
-    },
-    pots: {
-        paddingTop: 10,
-        marginRight: 40,
-        paddingLeft: 55,
-        height: 100,
-        width: "25%",
-        backgroundColor: "white",
-        borderRadius: 1,
-        marginTop: 20,
-        marginBottom: 20,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 3 },
-        shadowOpacity: 0.5,
-        shadowRadius: 5,
-        marginLeft: 25
-    },
-    good: {
-        paddingLeft: 26,
-        marginLeft: 35,
-        paddingTop: 3,
-        fontSize: 7,
-        height: 15,
-        width: "35%",
-        backgroundColor: "white",
-        borderRadius: 1,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 3 },
-        shadowOpacity: 0.5,
-        shadowRadius: 5
-    },
-    seeds: {
-        paddingLeft: 45,
-        marginLeft: 35,
-        paddingTop: 3,
-        fontSize: 7,
-        height: 15,
-        width: "35%",
-        backgroundColor: "white",
-        borderRadius: 1,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 3 },
-        shadowOpacity: 0.5,
-        shadowRadius: 5,
-        borderLeftColor: "green"
-    },
-    cash: {
-        paddingLeft: 55,
-        marginLeft: 35,
-
-        fontSize: 7,
-        height: 15,
-        width: "35%",
-        backgroundColor: "white",
-        borderRadius: 1,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 3 },
-        shadowOpacity: 0.5,
-        shadowRadius: 5
-    },
-
-    pest: {
-        paddingTop: 15,
-        marginRight: 18,
-
-        height: 100,
-        width: "26%",
-        backgroundColor: "white",
-        borderRadius: 1,
-        marginTop: 100,
-        marginLeft: 18,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 3 },
-        shadowOpacity: 0.5,
-        shadowRadius: 5
-    },
-    indo: {
+    image1: {
         paddingTop: 15,
         marginRight: 10,
         marginLeft: 35,
@@ -360,14 +111,24 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.5,
         shadowRadius: 5
     },
-    image: {
-        width: "100%",
-        height: "30%"
+    image2: {
+        marginLeft: 25,
+        marginTop: 20,
+        backgroundColor: "white",
+        height: 100,
+        width: "35%",
+        backgroundColor: "white",
+        borderRadius: 1,
+        resizeMode: 'contain',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.5,
+        shadowRadius: 5,
+        marginRight: 5
     },
-    cashindoor: {
-        paddingLeft: 55,
+    rate1: {
+        textAlign: 'center',
         marginLeft: 35,
-
         fontSize: 7,
         height: 15,
         width: "35%",
@@ -377,13 +138,10 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 0.5,
         shadowRadius: 5
-
-
     },
-    addcart: {
-        paddingLeft: 50,
+    rate2: {
+        textAlign: 'center',
         marginLeft: 35,
-        paddingTop: 2,
         fontSize: 7,
         height: 15,
         width: "35%",
@@ -392,12 +150,10 @@ const styles = StyleSheet.create({
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 0.5,
-        shadowRadius: 5,
-        backgroundColor: "green",
-        color: "white"
+        shadowRadius: 5
     },
-    anthurium: {
-        paddingLeft: 25,
+    name1: {
+        textAlign: 'center',
         marginLeft: 35,
         paddingTop: 3,
         fontSize: 7,
@@ -411,8 +167,8 @@ const styles = StyleSheet.create({
         shadowRadius: 5,
         borderLeftColor: "red"
     },
-    golden: {
-        paddingLeft: 40,
+    name2: {
+        textAlign: 'center',
         marginLeft: 35,
         paddingTop: 3,
         fontSize: 7,
@@ -425,6 +181,5 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.5,
         shadowRadius: 5
     }
-
-
 });
+export default SurgicalScreen;
