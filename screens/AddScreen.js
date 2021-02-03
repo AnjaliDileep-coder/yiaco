@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, ScrollView, KeyboardAvoidingView, View } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
-import AsyncStorage from '@react-native-community/async-storage';
 import { useNavigation } from '@react-navigation/native';
 
-
-const AddScreen = ({route}) => {
-
-    const item=route.params.item
+const AddScreen = ({ route }) => {
+    const item = route.params.item
     console.log(route)
     const navigation = useNavigation();
     const [name, setName] = useState('');
-
     const [phoneNumber, setPhonenumber] = useState('');
     const [pincode, setPincode] = useState('');
     const [State, setState] = useState('');
@@ -23,7 +19,6 @@ const AddScreen = ({route}) => {
         <KeyboardAvoidingView behavior="position">
             <ScrollView>
                 <View style={styles.container}>
-                    {/* <Text style={{ color: "00bfff", paddingLeft: 25, paddingTop:10 }}>Add Address</Text> */}
                     <TextInput style={styles.name}
                         mode="outlined"
                         value={name}
@@ -37,7 +32,6 @@ const AddScreen = ({route}) => {
                         label="Phone number*"
                         theme={{ colors: { primary: "#00bfff" } }}
                         onChangeText={(text) => setPhonenumber(text)} />
-
                     <TextInput style={styles.input}
                         mode="outlined"
                         value={pincode}
@@ -45,8 +39,6 @@ const AddScreen = ({route}) => {
                         label="Pincode*"
                         theme={{ colors: { primary: "#00bfff" } }}
                         onChangeText={(text) => setPincode(text)} />
-
-
                     <TextInput style={styles.input}
                         mode="outlined"
                         value={State}
@@ -54,7 +46,6 @@ const AddScreen = ({route}) => {
                         label="State*"
                         theme={{ colors: { primary: "#00bfff" } }}
                         onChangeText={(text) => setState(text)} />
-
                     <TextInput style={styles.input}
                         mode="outlined"
                         value={house}
@@ -62,8 +53,6 @@ const AddScreen = ({route}) => {
                         label="House/Flat/Block No.*"
                         theme={{ colors: { primary: "#00bfff" } }}
                         onChangeText={(text) => setHouse(text)} />
-
-
                     <TextInput style={styles.input}
                         mode="outlined"
                         value={roadName}
@@ -71,7 +60,6 @@ const AddScreen = ({route}) => {
                         label="Road name, Area,Colony* "
                         theme={{ colors: { primary: "#00bfff" } }}
                         onChangeText={(text) => setRoadname(text)} />
-
                     <TextInput style={styles.input}
                         mode="outlined"
                         value={city}
@@ -79,7 +67,6 @@ const AddScreen = ({route}) => {
                         label="City*"
                         theme={{ colors: { primary: "#00bfff" } }}
                         onChangeText={(text) => setCity(text)} />
-
                     <TextInput style={styles.input}
                         mode="outlined"
                         value={landmark}
@@ -87,20 +74,14 @@ const AddScreen = ({route}) => {
                         label="Landmark*"
                         theme={{ colors: { primary: "#00bfff" } }}
                         onChangeText={(text) => setLandmark(text)} />
-
-
                     <View style={styles.Button}>
-                        <Button mode="contained" onPress={() => navigation.navigate("Payment",{item:item})} color="#00bfff" width={200}>Save Address</Button>
+                        <Button mode="contained" onPress={() => navigation.navigate("Payment", { item: item })} color="#00bfff" width={200}>Save Address</Button>
                     </View>
-
                 </View>
             </ScrollView>
         </KeyboardAvoidingView>
     );
 }
-
-export default AddScreen;
-
 const styles = StyleSheet.create({
     signup: {
         paddingTop: 70,
@@ -126,7 +107,6 @@ const styles = StyleSheet.create({
         color: "#00bfff"
     },
     Button: {
-
         alignItems: "center",
         justifyContent: "center"
     },
@@ -136,13 +116,12 @@ const styles = StyleSheet.create({
         margin: 18,
         paddingRight: 5,
         marginLeft: 15
-
     },
     name: {
         width: "80%",
         height: 40,
         margin: 18,
-        paddingRight: 5,
-       
+        paddingRight: 5
     }
 });
+export default AddScreen;
