@@ -1,6 +1,6 @@
 import { } from 'expo-status-bar';
 import React from 'react';
-import { View, Text, ScrollView, Image} from 'react-native';
+import { View, Text, ScrollView, Image } from 'react-native';
 import { Left } from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ProductScreen from './ProductScreen';
