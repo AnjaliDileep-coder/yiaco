@@ -1,45 +1,46 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Alert, Text, AsyncStorage, Image } from 'react-native';
-import { Container, Content, View, Header, Icon, Button, Left, Right, Body, Title, List, ListItem, Thumbnail, Grid, Col } from 'native-base';
+import { Container, Content, View, Icon, Button, Left, Right, Body, List, ListItem, Grid, Col } from 'native-base';
 import { Actions } from 'react-native-router-flux';
-
 import Navbar from '../src/components/Navbar';
 
-
 export default class Cart extends React.Component {
-
   constructor(props) {
     super(props);
     console.log(props)
     this.state = {
+      item: '',
       cartItems: []
     };
   }
-
   componentWillMount() {
-    this.setState({ item: this.props.route.params.item })
+    console.log("this.props.route")
+    console.log(this.props.route)
+    if (this.props.route.params) {
+      this.setState({ item: this.props.route.params.item })
+      console.log("item")
+    }
     AsyncStorage.getItem("CART", (err, res) => {
-      if (!res) this.setState({ cartItems: [] });
-      else this.setState({ cartItems: JSON.parse(res) });
+      if (!res) {
+        this.setState({ cartItems: [] });
+      }
+      else {
+        this.setState({ cartItems: JSON.parse(res) });
+        this.setState({ item: JSON.parse(res) })
+      }
     });
   }
-
-
-
   render() {
     const { navigation } = this.props;
     var left = (
       <Left >
         <View style={styles.header}>
           <View>
-            <Image style={styles.imageh} source={require("../assets/logo.jpg")} />
-            
+            <Image style={styles.image} source={require("../assets/logo.jpg")} />
           </View>
         </View>
       </Left>
     );
-  
-
     return (
       <Container style={{ backgroundColor: '#fdfdfd' }}>
         <Navbar left={left} title="MY CART" />
@@ -55,7 +56,7 @@ export default class Cart extends React.Component {
             </List>
             <Grid style={{ marginTop: 20, marginBottom: 10 }}>
               <Col style={{ paddingLeft: 10, paddingRight: 5 }}>
-                <Button onPress={(item) => this.props.navigation.navigate("CartDetails",{item:this.state.item})} style={{ backgroundColor: "#00bfff" }} block iconLeft>
+                <Button onPress={(item) => this.props.navigation.navigate("CartDetails", { item: this.state.item })} style={{ backgroundColor: "#00bfff" }} block iconLeft>
                   <Icon name='ios-card' />
                   <Text style={{ color: '#fdfdfd' }}>Checkout</Text>
                 </Button>
@@ -73,7 +74,6 @@ export default class Cart extends React.Component {
       </Container>
     );
   }
-
   renderItems() {
     let items = [];
     this.state.cartItems.map((item, i) => {
@@ -81,9 +81,7 @@ export default class Cart extends React.Component {
         <ListItem
           key={i}
           last={this.state.cartItems.length === i + 1}
-          onPress={() => this.itemClicked(item)}
-        >
-          {/* <Thumbnail square style={{width: 110, height: 90}} /> */}
+          onPress={() => this.itemClicked(item)}>
           <Body >
             <Image style={{ width: 80, height: 80, }} source={item.image}></Image>
             <Text style={{ fontSize: 18, paddingTop: 20 }}>
@@ -94,7 +92,6 @@ export default class Cart extends React.Component {
           <Left style={{ paddingTop: 100, paddingLeft: 50 }} >
             <Text >Quantity: {item.quantity >= 1 ? item.quantity : null}</Text>
           </Left>
-
           <Right>
             <Button style={{ marginLeft: -25 }} transparent onPress={() => this.removeItemPressed(item)}>
               <Icon size={30} style={{ fontSize: 30, color: '#95a5a6' }} name='ios-remove-circle-outline' />
@@ -105,7 +102,6 @@ export default class Cart extends React.Component {
     });
     return items;
   }
-
   removeItemPressed(item) {
     Alert.alert(
       'Remove ' + item.title,
@@ -116,7 +112,6 @@ export default class Cart extends React.Component {
       ]
     )
   }
-
   removeItem(itemToRemove) {
     let items = [];
     this.state.cartItems.map((item) => {
@@ -126,7 +121,6 @@ export default class Cart extends React.Component {
     this.setState({ cartItems: items });
     AsyncStorage.setItem("CART", JSON.stringify(items));
   }
-
   removeAllPressed() {
     Alert.alert(
       'Empty cart',
@@ -137,48 +131,27 @@ export default class Cart extends React.Component {
       ]
     )
   }
-
   removeAll() {
     this.setState({ cartItems: [] })
     AsyncStorage.setItem("CART", JSON.stringify([]));
   }
-
-  //checkout() {
-  //Actions.checkout({cartItems: this.state.cartItems});
-
-  //}
-
-  //checkout(){
-  //props.navigation.navigate('LoadingScreen')
-  //}
-
   itemClicked(item) {
     Actions.product({ product: item });
   }
-
 }
-
 const styles = {
-  title: {
-
-    fontWeight: '100'
-  },
   header: {
     flexDirection: 'row',
     paddingTop: 30,
     backgroundColor: 'white',
     elevation: 5,
     paddingBottom: 20,
-    // paddingLeft:50,
     paddingRight: 1000,
     left: -10
-
   },
-  imageh: {
+  image: {
     width: 120,
     height: 30,
-    paddingLeft: 80,
-
-
+    paddingLeft: 80
   }
 };
