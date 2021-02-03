@@ -1,44 +1,25 @@
-import React, { Component, props } from 'react';
-import { Image, Dimensions, TouchableWithoutFeedback, AsyncStorage } from 'react-native';
-import { View, Container, Content, Button, Left, Right, Text, Icon, Picker, Item, Grid, Col, Root, Toast, Text as NBText }
-  from 'native-base';
-//import { Actions } from 'react-native-router-flux';
-import Carousel, { Pagination } from 'react-native-snap-carousel';
-
-// Our custom files and classes import
-//import Colors from '../Colors';
-//import Text from '../component/Text';
+import React, { Component } from 'react';
+import { Image, TouchableWithoutFeedback, AsyncStorage } from 'react-native';
+import { View, Container, Content, Button, Left, Right, Text, Icon, Col, Root, Toast, Text as NBText } from 'native-base';
 import Navbar from '../src/components/Navbar';
-import { default as ProductComponent } from '../src/components/Product';
 import { LogBox } from 'react-native';
-LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreLogs(['Warning: ...']);
 LogBox.ignoreAllLogs();
-import { useNavigation } from '@react-navigation/native';
 
 export default class Screen extends Component {
-
   constructor(props) {
     super(props);
-    // console.log(this.props.route.params.name)
-
     this.state = {
       product: {},
       activeSlide: 0,
       quantity: 1,
       selectedSize: '',
       item: ''
-    };
+    }
   }
-
   componentWillMount() {
-    //get the product with id of this.props.product.id from your server
-    // this.setState({product: dummyProduct});
     this.setState({ item: this.props.route.params.name })
-
   }
-
-
-
   render() {
     var left = (
       <Left style={{ flex: 1 }}>
@@ -52,7 +33,6 @@ export default class Screen extends Component {
         <Button transparent>
           <Icon name='ios-search-outline' />
         </Button>
-
       </Right>
     );
     return (
@@ -60,61 +40,22 @@ export default class Screen extends Component {
         <Container style={{ backgroundColor: '#fdfdfd' }}>
           <Navbar left={left} right={right} />
           <Content>
-            {/*
-              <Carousel
-                  ref={(carousel) => { this._carousel = carousel; }}
-                  sliderWidth={Dimensions.get('window').width}
-                  itemWidth={Dimensions.get('window').width}
-                  onSnapToItem={(index) => this.setState({ activeSlide: index }) }
-                  enableSnap={true}
-                >
-                    {this.renderImages()}
-                </Carousel>
-          */}
-            {/* <Carousel
-              ref={(carousel) => { this._carousel = carousel; }}
-              sliderWidth={Dimensions.get('window').width}
-              itemWidth={Dimensions.get('window').width}
-              onSnapToItem={(index) => this.setState({ activeSlide: index }) }
-              enableSnap={true}
-              data={this.state.product.images}
-              renderItem={this.renderImages}
-            >
-            </Carousel>
-            <Pagination
-              dotsLength={this.state.product.images.length}
-              activeDotIndex={this.state.activeSlide}
-              containerStyle={{ backgroundColor: 'transparent',paddingTop: 0, paddingBottom: 0, marginTop: -15 }}
-              dotStyle={{
-                  width: 10,
-                  height: 10,
-                  borderRadius: 5,
-                  marginHorizontal: 2,
-                  backgroundColor: 'rgba(255, 255, 255, 0.92)'
-              }}
-              inactiveDotOpacity={0.4}
-              inactiveDotScale={0.6}
-            /> */}
             <View style={{ backgroundColor: '#fdfdfd', paddingTop: 10, paddingBottom: 10, paddingLeft: 12, paddingRight: 12 }}>
               <Image style={{ width: 220, height: 220 }} source={this.state.item.image} />
               <View style={{ flexDirection: 'row', paddingTop: 30, paddingBottom: 30 }}>
                 <Text style={{ fontSize: 18, paddingRight: 130 }}>{this.state.item.name}</Text>
                 <Text style={{ fontSize: 20, fontWeight: 'bold' }}>{this.state.item.price}</Text>
               </View>
-
               <View style={{ flexDirection: 'row' }} >
                 <View style={{ flex: 1, justifyContent: 'center', marginTop: 10 }}>
                   <Text>Quantity:</Text>
                 </View>
-
                 <View style={{ flexDirection: 'row' }}>
                   <Button color="white" onPress={() => this.setState({ quantity: this.state.quantity > 1 ? this.state.quantity - 1 : 1 })} >
                     <Icon name='ios-remove-outline' size={10} color="black" />
                   </Button>
-
                   <View
                     style={{
-
                       justifyContent: 'center', alignItems: 'center', paddingLeft: 30, paddingRight: 30
                     }}>
                     <Text style={{ fontSize: 18 }}>{this.state.quantity}</Text>
@@ -138,24 +79,19 @@ export default class Screen extends Component {
               </Button>
             </View>
             <View style={{ alignSelf: 'center', paddingTop: 20 }}>
-              <Button block onPress={()=>this.props.navigation.navigate("CartDetails",{item:this.state.item})} style={{ backgroundColor: "#00bfff" }}>
+              <Button block onPress={() => this.props.navigation.navigate("CartDetails", { item: this.state.item })} style={{ backgroundColor: "#00bfff" }}>
                 <Text style={{ color: "#fdfdfd" }}>Buy Now</Text>
               </Button>
             </View>
             <Col>
               <Button block onPress={this.addToWishlist.bind(this)} icon transparent style={{ backgroundColor: '#fdfdfd' }}>
-
               </Button>
             </Col>
-
-
-
           </Content>
         </Container>
       </Root>
     );
   }
-
   renderImages({ item, index }) {
     return (
       <TouchableWithoutFeedback key={index} onPress={() => this.openGallery(index)}>
@@ -163,15 +99,11 @@ export default class Screen extends Component {
       </TouchableWithoutFeedback>
     );
   }
-
   openGallery(pos) {
     Actions.imageGallery({ images: this.state.product.images, position: pos });
   }
-
   addToCart() {
     var product = this.state.item;
-
-
     product['quantity'] = this.state.quantity;
     AsyncStorage.getItem("CART", (err, res) => {
       if (!res) AsyncStorage.setItem("CART", JSON.stringify([product]));
@@ -190,10 +122,9 @@ export default class Screen extends Component {
           backgroundColor: "#00bfff"
         }
       });
-      this.props.navigation.navigate("CartScreen",{item:this.state.item})
+      this.props.navigation.navigate("CartScreen", { item: this.state.item })
     });
   }
-
   addToWishlist() {
     var product = this.state.product;
     var success = true;
@@ -229,16 +160,13 @@ export default class Screen extends Component {
       }
     });
   }
-
   search(array, object) {
     for (var i = 0; i < array.length; i++)
       if (JSON.stringify(array[i]) === JSON.stringify(object))
         return true;
     return false;
   }
-
 }
-
 const dummyProduct = {
   id: 2,
   title: 'ARTERY FORCEPS',
@@ -251,10 +179,7 @@ const dummyProduct = {
     'http://res.cloudinary.com/atf19/image/upload/c_crop,h_250/v1500465308/pexels-photo-179909_ddlsmt.jpg'
   ],
   price: '120$',
-
-
   category: 'MAN',
-
 };
 const dummyProduct2 = {
   id: 2,
@@ -268,8 +193,5 @@ const dummyProduct2 = {
     'http://res.cloudinary.com/atf19/image/upload/c_crop,h_250/v1500465308/pexels-photo-179909_ddlsmt.jpg'
   ],
   price: '120$',
-
-
   category: 'MAN',
-
 };
