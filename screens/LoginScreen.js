@@ -66,7 +66,7 @@ export default function LoginScreen(props) {
 const styles = StyleSheet.create({
   login: {
     paddingTop: 100,
-    paddingLeft: 130,
+    textAlign: 'center',
     alignItems: "center",
     justifyContent: "center",
     fontSize: 35,
