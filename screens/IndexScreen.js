@@ -53,13 +53,13 @@ const styles = StyleSheet.create({
         color: '#00bfff',
         fontWeight: 'bold',
         fontSize: 15,
-        paddingBottom:30
+        paddingBottom: 30
     },
     term: {
         color: '#00bfff',
         paddingLeft: 70,
         paddingBottom: 70,
-        paddingTop:5
+        paddingTop: 5
     },
     image: {
         width: 330,
