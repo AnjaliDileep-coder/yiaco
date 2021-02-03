@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, View, Text, ScrollView, Image } from 'react-native';
 import { Left } from 'native-base';
