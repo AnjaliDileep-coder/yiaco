@@ -1,13 +1,11 @@
 import React from 'react';
-import { Text, Button, Image, View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
-import Icon from 'react-native-vector-icons/SimpleLineIcons';
+import { Text, Image, View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import Icon1 from 'react-native-vector-icons/Entypo';
 import Icon2 from 'react-native-vector-icons/AntDesign'
 import Icon3 from 'react-native-vector-icons/FontAwesome'
 import { useNavigation } from '@react-navigation/native';
 
-const Payment = ({route}) => {
-    // if (route.params) {
+const Payment = ({ route }) => {
     const item = route.params.item
     console.log(item)
     const navigation = useNavigation();
@@ -15,15 +13,13 @@ const Payment = ({route}) => {
         <ScrollView>
             <View style={styles.payment}>
                 <View style={styles.paymentcontainer}>
-                    <Image style={styles.image}  source={item.image} />
-                    <Text style={styles.paymenttext}>{item.name}</Text>
+                    <Image style={styles.image} source={item[0].image} />
+                    <Text style={styles.paymenttext}>{item[0].name}</Text>
                 </View>
                 <View style={styles.paymentcontainertext}>
-                    <Text style={styles.paymenttextcolor}>{item.Quantity}</Text>
-                   
-                    <Text style={styles.paymenttextcolor}>{item.price}</Text>
+                    <Text style={styles.paymenttextcolor}>{item[0].Quantity}</Text>
+                    <Text style={styles.paymenttextcolor}>{item[0].price}</Text>
                 </View>
-
             </View>
             <View style={styles.textpay}>
                 <Text>PAY ON DELIVERY</Text>
@@ -43,9 +39,8 @@ const Payment = ({route}) => {
             <View style={styles.textpay}>
                 <Text>CREDIT/DEBIT CARDS</Text>
             </View>
-           
             <View style={styles.payment}>
-                <TouchableOpacity onPress={()=>navigation.navigate("PaymentDetails",{item:item})}style={styles.direction}>
+                <TouchableOpacity onPress={() => navigation.navigate("PaymentDetails", { item: item })} style={styles.direction}>
                     <Icon2 style={styles.iconstyle} name="plussquareo" size={15} color="#00bfff" />
                     <Text style={styles.touchcolor}>ADD CARD</Text>
                 </TouchableOpacity>
@@ -64,7 +59,6 @@ const Payment = ({route}) => {
                         <Image style={styles.imageru} source={require("../assets/rupay.png")} />
                     </View>
                 </View>
-
             </View>
             <View style={styles.textpay}>
                 <Text>UPI</Text>
@@ -82,14 +76,13 @@ const Payment = ({route}) => {
                     <View style={styles.imgpad2}>
                         <TouchableOpacity >
                             <View style={styles.upi1}>
-                                <Image style={styles.imagephpe} source={require("../assets/phonepe.png")} />
+                                <Image style={styles.imagephnpe} source={require("../assets/phonepe.png")} />
                             </View>
                             <Text style={styles.touchcolor1}>PhonePe UPI</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
-                <View style={styles.line1}></View>
-                
+                <View style={styles.line}></View>
                 <TouchableOpacity style={styles.direction2}>
                     <Icon2 style={styles.iconstyle} name="plussquareo" size={15} color="#00bfff" />
                     <Text style={styles.touchcolor}>ADD NEW UPI ID</Text>
@@ -127,29 +120,17 @@ const Payment = ({route}) => {
                     <Text style={styles.touchcolor}>MORE BANKS</Text>
                     <Icon2 style={styles.iconstyle1} name="right" size={11} color='grey' />
                 </TouchableOpacity>
-
             </View>
-          
         </ScrollView >
-
     )
-// }
 }
-
 const styles = StyleSheet.create({
     payment: {
         backgroundColor: 'white',
         paddingTop: 40,
         paddingLeft: 10,
         paddingRight: 10,
-        paddingBottom: 10,
-    },
-    payment1: {
-        backgroundColor: 'white',
-
-        paddingLeft: 10,
-        paddingRight: 10,
-        paddingBottom: 10,
+        paddingBottom: 10
     },
     paymentcontainer: {
         flexDirection: 'row'
@@ -159,17 +140,8 @@ const styles = StyleSheet.create({
         paddingLeft: 50,
         top: -15
     },
-    paymentcontainertext1: {
-        flexDirection: 'row',
-        paddingLeft: 40,
-        top: -10,
-    },
     paymenttext: {
         paddingLeft: 10,
-        fontWeight: 'bold'
-    },
-    paymenttext1: {
-        paddingLeft: 15,
         fontWeight: 'bold'
     },
     paymenttextcolor: {
@@ -180,18 +152,8 @@ const styles = StyleSheet.create({
         paddingBottom: 20,
         paddingLeft: 10,
     },
-    textpay1: {
-        paddingBottom: 10,
-        paddingLeft: 10,
-    },
-    textpay2: {
-        paddingTop: 20,
-        paddingLeft: 10,
-    },
-
     direction: {
-        flexDirection: 'row',
-
+        flexDirection: 'row'
     },
     direction1: {
         flexDirection: 'row',
@@ -224,55 +186,10 @@ const styles = StyleSheet.create({
         width: 40,
         height: 40,
     },
-    imagepaytm: {
-        width: 38,
-        height: 12,
-    },
-    imagepay: {
-        width: 32,
-        height: 20,
-    },
-    imagepe: {
-        width: 25,
-        height: 25,
-    },
-    imagefree: {
-        width: 25,
-        height: 25,
-    },
-    imagemob: {
-        width: 25,
-        height: 25,
-    },
-    imagetext: {
-        paddingLeft: 20,
-        paddingRight: 160,
-    },
-    imagetextpay: {
-        paddingLeft: 23,
-        paddingRight: 125,
-    },
-    imagetextpe: {
-        paddingLeft: 30,
-        paddingRight: 146,
-    },
-    imagetextfree: {
-        paddingLeft: 30,
-        paddingRight: 129,
-    },
-    imagetextmob: {
-        paddingLeft: 30,
-        paddingRight: 144,
-    },
     line: {
         borderBottomColor: 'grey',
         borderBottomWidth: 0.3,
-    },
-    line1: {
-        borderBottomColor: 'grey',
-        borderBottomWidth: 0.3,
-        paddingTop: 20,
-
+        paddingTop: 20
     },
     touchcolor: {
         color: '#00bfff'
@@ -282,19 +199,19 @@ const styles = StyleSheet.create({
     },
     touchcolor2: {
         color: 'grey',
-        paddingLeft:7,
-        paddingTop:10
+        paddingLeft: 7,
+        paddingTop: 10
     },
     touchcolor3: {
         color: 'grey',
-        paddingTop:10
+        paddingTop: 10
     },
     iconstyle: {
         paddingRight: 20
     },
     iconstyle1: {
         paddingLeft: 270,
-        paddingTop:3
+        paddingTop: 3
     },
     iconstyletext: {
         paddingLeft: 34,
@@ -304,8 +221,7 @@ const styles = StyleSheet.create({
     },
     imagevisa: {
         width: 37,
-        height: 12,
-
+        height: 12
     },
     imagemaster: {
         width: 34,
@@ -336,26 +252,12 @@ const styles = StyleSheet.create({
         width: 58,
         height: 30,
     },
-    imagephpe: {
+    imagephnpe: {
         width: 30,
         height: 30,
     },
     upi: {
         paddingBottom: 20
-    },
-    imagezeta: {
-        width: 48,
-        height: 18,
-    },
-    imageticket: {
-        width: 48,
-        height: 20,
-    },
-    imageso: {
-        width: 56,
-        height: 18,
-    },
-
+    }
 });
-
 export default Payment;
