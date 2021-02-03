@@ -6,13 +6,11 @@ const IndexScreen = ({ navigation }) => {
         <View style={styles.color} >
             <Image style={styles.image} source={require('../assets/logo.jpg')} />
             <View style={styles.textstyle} >
-
                 <View style={styles.buttonContainer} >
                     <Button
                         color="#00bfff"
                         title="SIGN UP"
-                        onPress={() => navigation.navigate('SignupScreen')}
-                    />
+                        onPress={() => navigation.navigate('SignupScreen')} />
                 </View >
                 <TouchableOpacity
                     style={styles.textContainer}
@@ -26,11 +24,9 @@ const IndexScreen = ({ navigation }) => {
                     <Text style={styles.term}>Terms and Conditions</Text>
                 </View>
             </View>
-
         </View>
     )
 };
-
 const styles = StyleSheet.create({
     text: {
         alignSelf: 'center',
@@ -41,16 +37,9 @@ const styles = StyleSheet.create({
     textstyle: {
         alignSelf: 'center',
         paddingTop: 100
-
     },
     textcolor: {
         color: 'grey'
-    },
-    text1: {
-        alignSelf: 'center',
-        padding: 15,
-        color: 'grey',
-        fontWeight: 'bold'
     },
     buttonContainer: {
         padding: 20,
@@ -74,16 +63,12 @@ const styles = StyleSheet.create({
     },
     image: {
         width: 330,
-        height: 200,
-
+        height: 200
     },
     color: {
         backgroundColor: 'white',
         paddingTop: 200,
         paddingLeft: 25
     }
-
 });
-
-
 export default IndexScreen;
