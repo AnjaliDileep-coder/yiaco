@@ -19,7 +19,7 @@ const AddScreen = ({ route }) => {
         <KeyboardAvoidingView behavior="position">
             <ScrollView>
                 <View style={styles.container}>
-                    <TextInput style={styles.name}
+                    <TextInput style={styles.input}
                         mode="outlined"
                         value={name}
                         label="Name*"
@@ -74,7 +74,7 @@ const AddScreen = ({ route }) => {
                         label="Landmark*"
                         theme={{ colors: { primary: "#00bfff" } }}
                         onChangeText={(text) => setLandmark(text)} />
-                    <View style={styles.Button}>
+                    <View style={styles.button}>
                         <Button mode="contained" onPress={() => navigation.navigate("Payment", { item: item })} color="#00bfff" width={200}>Save Address</Button>
                     </View>
                 </View>
@@ -83,45 +83,24 @@ const AddScreen = ({ route }) => {
     );
 }
 const styles = StyleSheet.create({
-    signup: {
-        paddingTop: 70,
-        paddingLeft: 120,
-        alignItems: "center",
-        justifyContent: "center",
-        fontSize: 35,
-        fontWeight: "700",
-        color: "#00bfff"
-    },
-    textsave: {
-        paddingTop: 20,
-        color: 'grey',
-        paddingBottom: 10,
-        paddingLeft: 25
-    },
-    create: {
-        paddingLeft: 105,
-        fontStyle: "italic",
-        fontSize: 15,
+    container: {
+        borderWidth: 1,
         paddingTop: 5,
         paddingBottom: 5,
-        color: "#00bfff"
+        paddingLeft: 1,
+        paddingRight: 1,
+        borderColor: '#ffa500'
     },
-    Button: {
+    button: {
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        alignContent: 'center'
     },
     input: {
         width: "80%",
         height: 40,
         margin: 18,
-        paddingRight: 5,
-        marginLeft: 15
-    },
-    name: {
-        width: "80%",
-        height: 40,
-        margin: 18,
-        paddingRight: 5
+        marginLeft: 40
     }
 });
 export default AddScreen;
